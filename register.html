@@ -55,8 +55,15 @@
          			required : true,
          			minlength : 10,
          		},
-         		password : "required",
-                confirm : "required",
+         		password : {
+         			 required : true,
+         			 minlength : 5
+         		},
+                confirm : {
+                	required : true,
+                	minlength : 5,
+                	equalTo : "#password"
+                },
          	},
          	messages : {
          		name : "enter ur name",
@@ -68,8 +75,15 @@
          			required : "enter mobile number",
          			minlength : "enter valid mobile number"
          		},
-         		password : "enter ur password",
-         		confirm : "confirm ur password",
+         		password : {
+         			required : "enter ur password",
+         			minlength : "mimimum 5 character"
+         		},
+         		confirm : {
+         			required : "enter password",
+         			minlength : "minimum 5 character",
+         			equalTo : "ur password dosn't match"
+         		},
          	},
          });
 	});
