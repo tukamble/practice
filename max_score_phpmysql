@@ -1,0 +1,29 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_error', 1);
+
+$servername = "localhost";
+$username = "root";
+$password = "jarvis";
+$dbname = "testside";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password,$dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+	$sql="SELECT a.id,a.class,b.name,c.score FROM classes a INNER JOIN students b ON (a.id=b.class_id) INNER JOIN scores c ON (b.id=c.student_id) WHERE score IN (SELECT MAX(score) FROM scores)";
+	$result = $conn->query($sql) or die("error".$sql.$conn->error);
+	while ($row = mysqli_fetch_assoc($result)) {
+		$id =$row['id'];
+		$name=$row['class'];
+		$class =$row['name'];
+		$score =$row['score'];
+		echo "id: $id<br><br>class: $name<br><br>name: $class<br><br>score: $score<br>";
+
+ 			
+	}
+	
+?>
