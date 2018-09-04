@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css"></style>
+</head>
+<body>
+<form method="post" action="taxi_fare.php" class="form">
+				kilometer<input type="name" name="kilometer"><br><br>
+				waiting time<input type="text" name="wtime"><br><br>
+				journey time<input type="time" name="jtime">
+				<input type="submit" name="">	
+			</form>
+<?php
+$kilometer = $_REQUEST['kilometer'] . "<br />";
+$wtime = $_REQUEST['wtime'] . "<br />";
+$jtm = $_REQUEST['jtime'] . "<br />";
+
+if ($kilometer > 0)
+	{
+	function cal($kilometer, $wtime, $jtm)
+		{
+		if (($jtm < 12) && ($jtm < 6))
+			{
+			echo "its midnight" . "<br />";
+			$fix = 22;
+			$temp = $kilometer - 1.5;
+			$x = $temp * 15;
+			$w = $wtime * 1.50;
+			$result = $fix + $x + $w;
+			$result2 = $result / 2;
+			$final = $result + $result2;
+			return $final;
+			}
+		  else
+			{
+			$fix = 22;
+			$temp = $kilometer - 1.5;
+			$x = $temp * 15;
+			$w = $wtime * 1.50;
+			$final= $fix + $x + $w;
+			return $final;
+			}
+		}
+	}
+  else
+	{
+	echo "No distance travled".$kilometer * 22;
+	}
+
+echo "taxi fare is:".cal($kilometer, $wtime, $jtm);
+?>
+
+</body>
+</html>
+
